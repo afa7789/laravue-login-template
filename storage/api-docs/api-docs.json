@@ -1,0 +1,436 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Generico",
+        "description": "\n * Essa é a API para o projeto Generico teste de lgoin e registro\n *     ",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/password/request": {
+            "post": {
+                "tags": [
+                    "link",
+                    "password",
+                    "reset"
+                ],
+                "description": "Send a link to access reset a password reset",
+                "operationId": "SendResetLink",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "email"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This will have a success boolean , true or false. And a message in case it's needed"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                }
+            }
+        },
+        "/api/password/token": {
+            "post": {
+                "tags": [
+                    "token",
+                    "password",
+                    "reset"
+                ],
+                "description": "Send the token used by a password reset",
+                "operationId": "RequestToken",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "email"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with the token"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                }
+            }
+        },
+        "/api/password/reset": {
+            "get": {
+                "tags": [
+                    "password",
+                    "reset",
+                    "request",
+                    "get"
+                ],
+                "description": "Send the new Password to reset",
+                "operationId": "PasswordResetGet",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Backend Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "new password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "new password confirmed",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with success true or false"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "password",
+                    "reset",
+                    "request",
+                    "post"
+                ],
+                "description": "Send the new Password to be reset",
+                "operationId": "PasswordResetPost",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Backend Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "new password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "new password confirmed",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with success true or false"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "description": "Login with user and pass, return the user data",
+                "operationId": "LoginRequest",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "new password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with status true or false, if true will return the user data correctly"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "user",
+                    "register"
+                ],
+                "description": "Register New User",
+                "operationId": "Register",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "User name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "password confirmation",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with success true or false"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/email/verify/{hash}": {
+            "get": {
+                "tags": [
+                    "hash",
+                    "email",
+                    "verify",
+                    "get"
+                ],
+                "description": "Receives a hash from an email that should verificate the email from user",
+                "operationId": "Verify",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Hash created by the system",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource with success true or false"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/email/resend": {
+            "get": {
+                "tags": [
+                    "resend",
+                    "email",
+                    "verify"
+                ],
+                "description": "Accordingly to the AUTH token it will send an email to verify the account",
+                "operationId": "ResendVerifyMail",
+                "responses": {
+                    "200": {
+                        "description": "Just a 200"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "get",
+                    "user",
+                    "data"
+                ],
+                "description": "Get User Data in accord to the auth token received",
+                "operationId": "GetUserData",
+                "responses": {
+                    "200": {
+                        "description": "Just a 200"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "logout",
+                    "user",
+                    "auth"
+                ],
+                "description": "Logout the user that's in accord to the auth token received",
+                "operationId": "Logout",
+                "responses": {
+                    "200": {
+                        "description": "Just a 200"
+                    },
+                    "400": {
+                        "description": "Form request validation error. Invalid input."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/": {
+            "get": {
+                "description": "Home page",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": {
+        "passport": {
+            "type": "oauth2",
+            "description": "Laravel passport oauth2 security.",
+            "in": "header",
+            "scheme": "https",
+            "flows": {
+                "password": {
+                    "authorizationUrl": "http://localhost/oauth/authorize",
+                    "tokenUrl": "http://localhost/oauth/token",
+                    "refreshUrl": "http://localhost/token/refresh",
+                    "scopes": []
+                }
+            }
+        }
+    }
+}

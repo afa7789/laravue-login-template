@@ -1,0 +1,26 @@
+{   
+    "buttons":{
+        "login": "Login",
+        "register" : "Register",
+        "forgot_password" :"Forgot My Password",
+        "logout":"Logout"
+    },
+    "placeholders":{   
+        "email":"E-mail",
+        "password":"Password",
+        "name":"Name",
+        "password_confirmation":"Password Confirmation"
+    },
+    "login":{
+        "title":"Perfect CRUD Login"
+    },
+    "about":{
+        "title":"This is an About Page"
+    },
+    "error_messages":{
+        "password_do_not_match":"The Passwords doesn't match",
+        "empty_fields":"Fields cannott be empty",
+        "login_need":"To access you need to be Logged in",
+        "wrong_credentials":"These credentials do not match our records."
+    }
+}
